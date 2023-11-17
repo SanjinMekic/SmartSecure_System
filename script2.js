@@ -108,20 +108,22 @@ function Load() {
 
 function funkcija() {
   var currentTime = new Date();
-  var dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
-    currentTime
-  );
+  var day = currentTime.getDate();
+  var month = currentTime.getMonth() + 1; // Months are zero-based
   var year = currentTime.getFullYear();
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
-  var seconds = currentTime.getSeconds();
+  var hours = currentTime.getHours().toString().padStart(2, "0");
+  var minutes = currentTime.getMinutes().toString().padStart(2, "0");
+  var seconds = currentTime.getSeconds().toString().padStart(2, "0");
 
-  var formattedTime = `${dayOfWeek}, ${year}, ${hours}:${minutes}:${seconds}`;
+  // Format the date and time
+  var formattedDate = `${day}.${month}.${year}`;
+  var formattedTime = `${hours}:${minutes}:${seconds}`;
+
   var newTaskDiv = document.createElement("div");
   newTaskDiv.className = "notifikacija";
   newTaskDiv.innerHTML = `
     <p>Motion detected!</p>
-    <p>${formattedTime}</p>
+    <p>${formattedDate} / ${formattedTime}</p>
     <div class="ugasi">X</div>
   `;
   document.querySelector(".notificationsContainer").append(newTaskDiv);
