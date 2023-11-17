@@ -115,9 +115,26 @@ function funkcija() {
   var minutes = currentTime.getMinutes().toString().padStart(2, "0");
   var seconds = currentTime.getSeconds().toString().padStart(2, "0");
 
+  // Format the date and time
   var formattedDate = `${day}.${month}.${year}`;
   var formattedTime = `${hours}:${minutes}:${seconds}`;
 
+  // Create a push notification
+  if (Notification.permission === "granted") {
+    var notification = new Notification("Motion detected!", {
+      body: `${formattedDate} / ${formattedTime}`,
+    });
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        var notification = new Notification("Motion detected!", {
+          body: `${formattedDate} / ${formattedTime}`,
+        });
+      }
+    });
+  }
+
+  // Create a new task div and append it to the notifications container
   var newTaskDiv = document.createElement("div");
   newTaskDiv.className = "notifikacija";
   newTaskDiv.innerHTML = `
@@ -127,7 +144,17 @@ function funkcija() {
   `;
   document.querySelector(".notificationsContainer").append(newTaskDiv);
 
+  // Save data (assuming you have a saveData function)
   saveData();
+}
+
+// Check if the browser supports the Notification API
+if ("Notification" in window) {
+  // Request permission to show notifications
+  Notification.requestPermission().then(function (permission) {
+    // Store the permission status in a variable or handle it as needed
+    console.log("Notification permission:", permission);
+  });
 }
 
 // Event listeners for dugmic1 and dugmic2 modified to check button states
