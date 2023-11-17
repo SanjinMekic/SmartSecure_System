@@ -115,9 +115,22 @@ function funkcija() {
   var minutes = currentTime.getMinutes().toString().padStart(2, "0");
   var seconds = currentTime.getSeconds().toString().padStart(2, "0");
 
-  // Format the date and time
   var formattedDate = `${day}.${month}.${year}`;
   var formattedTime = `${hours}:${minutes}:${seconds}`;
+
+  if (Notification.permission === "granted") {
+    var notification = new Notification("Motion detected!", {
+      body: `Check the application`,
+    });
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        var notification = new Notification("Motion detected!", {
+          body: `Check the application`,
+        });
+      }
+    });
+  }
 
   var newTaskDiv = document.createElement("div");
   newTaskDiv.className = "notifikacija";
@@ -127,7 +140,14 @@ function funkcija() {
     <div class="ugasi">X</div>
   `;
   document.querySelector(".notificationsContainer").append(newTaskDiv);
+
   saveData();
+}
+
+if ("Notification" in window) {
+  Notification.requestPermission().then(function (permission) {
+    console.log("Notification permission:", permission);
+  });
 }
 
 // Event listeners for dugmic1 and dugmic2 modified to check button states
