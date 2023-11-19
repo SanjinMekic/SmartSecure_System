@@ -23,14 +23,14 @@
 #include "addons/RTDBHelper.h"
 
 // Insert your network credentials
-#define WIFI_SSID "PrenosniInternet"
-#define WIFI_PASSWORD "Mekic2211"
+#define WIFI_SSID "YOUR_WIFI"
+#define WIFI_PASSWORD "YOUR_PASSWORD"
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyA7Blc7jBTfiM8M8zNYC6jeKWf9e3q6K2E"
+#define API_KEY "YOUR_API_KEY"
 
 // Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://smart-living-dfd88-default-rtdb.europe-west1.firebasedatabase.app/" 
+#define DATABASE_URL "YOUR_DATABASE_URL" 
 
 //Define Firebase Data object
 FirebaseData fbdo;
@@ -47,7 +47,6 @@ int val = 0;
 int alarmOn = 0;
 int lightOn = 0;
 int sistemUkljucen = 1;
-int blink = 0;
 
 
 void setup(){
