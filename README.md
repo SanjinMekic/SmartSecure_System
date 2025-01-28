@@ -1,4 +1,4 @@
-#SmartSecure Living System
+# SmartSecure Living System
 ## Overview
 The SmartSecure Living System is an IoT-based security and smart home system that integrates motion detection, alarm control, and lighting automation. The system uses Firebase Realtime Database to synchronize data between a web interface and an embedded microcontroller (ESP32 or ESP8266). The web interface allows users to monitor and control the alarm and light statuses in real-time, while the embedded system interacts with sensors and hardware to control physical devices.
 
